@@ -30,9 +30,6 @@ resource "aws_lambda_function" "alb_logs_to_elasticsearch_vpc" {
     security_group_ids = [aws_security_group.lambda[0].id]
   }
 
-  lifecycle {
-    ignore_changes = [filename]
-  }
 }
 
 resource "aws_lambda_permission" "allow_terraform_bucket_vpc" {
@@ -70,9 +67,6 @@ resource "aws_lambda_function" "alb_logs_to_elasticsearch" {
     tomap({ "Scope" = "${var.prefix}lambda_function_to_elasticsearch" }),
   )
 
-  lifecycle {
-    ignore_changes = [filename]
-  }
 }
 
 resource "aws_lambda_permission" "allow_terraform_bucket" {
